@@ -1,0 +1,57 @@
+<section class="bg-main-light rounded-4 shadow p-4 my-2 container">
+
+    <div class="d-flex justify-content-between align-items-center">
+        <h1 class="h3 ">Shop cart :</h1>
+        @if ((cartNumberNav()!=0)) {
+       
+            <button (click)="clearCart()" class="btn btn-outline-danger btn-sm">Claer Cart</button>
+        }
+        
+    </div>
+
+    @if ((cartNumberNav()!=0)) {
+       
+        <p class="text-main">totalCartPrice : {{cartDetails.totalCartPrice | currency:'EGP'}} </p>
+    }
+
+
+   @for (item of cartDetails.products; track item.product._id) {
+    <div class="row mb-1 border">
+
+        <div class="col-md-1">
+            <div>
+                <img class="w-100" [src]="item.product.imageCover" [alt]="item.product.title">
+            </div>
+
+            
+            
+        </div>
+        
+        <div class="col-md-11 d-flex justify-content-between align-items-center">
+            
+            <div>
+                
+                <h3 class="h5 m-0">{{item.product.title}}</h3>
+                <p class="text-main m-0">Price : {{item.price | currency :'EGP'}}</p>
+                <button (click)="removeItem(item.product._id)" class="btn"><i class=" fa-solid fa-trash text-main"></i> Remove</button>
+                
+            </div>  
+            <div>
+                <span (click)="ubdatcount(item.product.id ,item.count +1 )" ><i class="fa-solid fa-square-plus fa-xl cr text-main"></i></span>
+                <span class="mx-2">{{item.count}}</span>
+                <span (click)="ubdatcount(item.product.id ,item.count -1 )" ><i class="fa-solid fa-square-minus fa-xl cr text-main"></i></span>
+            </div>
+            
+        </div>
+
+    </div>
+
+   }
+
+   @if ((cartNumberNav()!=0)) {
+       
+       <button [routerLink]="['/order',cartDetails._id]" class="btn-main"  > Online Payment 
+        <img  src="./assets/images/mastercard.webp" width="30px" alt="">       </button>
+   }
+
+</section>

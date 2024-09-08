@@ -1,0 +1,62 @@
+<section class="container w-50 m-auto bg-main-light rounded-4 shadow p-2 my-2">
+    <h1 class="text-main h2">shipping Address:</h1>
+
+    <form [formGroup]="ordras" (ngSubmit)="ordersubmit()" >
+
+        <div>
+            <label for="details">Details</label>
+            <input formControlName="details" class="form-control " id="details" type="text">
+            @if (ordras.get('details')?.errors && (ordras.get('details')?.touched || ordras.get('details')?.dirty ) ) {
+
+                <div class="alert alert-danger w-100 m-0 "> 
+                    @if (ordras.get('details')?.getError('required')) {
+
+                        <p class="m-0 ">details required</p>
+                    }
+        
+
+                </div>
+            }
+        </div>
+        <div>
+            <label for="phone">phone</label>
+            <input formControlName="phone" class="form-control " id="phone" type="tel">
+
+            @if (ordras.get('phone')?.errors && (ordras.get('phone')?.touched || ordras.get('phone')?.dirty ) ) {
+
+                <div class="alert alert-danger w-100 m-0 "> 
+                    @if (ordras.get('phone')?.getError('required')) {
+
+                        <p class="m-0 ">phone required</p>
+                    }
+
+                    @else if (ordras.get('phone')?.getError('pattern')) {
+
+                        <p class="m-0 ">Enter Valid Egyption phone</p>
+                    }
+        
+
+                </div>
+            }
+        </div> 
+
+        <div>
+            <label for="city">city</label>
+            <input formControlName="city" class="form-control " id="city" type="text">
+            @if (ordras.get('city')?.errors && (ordras.get('city')?.touched || ordras.get('city')?.dirty ) ) {
+
+                <div class="alert alert-danger w-100 m-0 "> 
+                    @if (ordras.get('city')?.getError('required')) {
+
+                        <p class="m-0 ">city required</p>
+                    }
+        
+
+                </div>
+            }
+        </div>
+
+        <button [disabled]="ordras.invalid" class="my-2 btn-main" type="submit">cheek out</button>
+
+    </form>
+</section>

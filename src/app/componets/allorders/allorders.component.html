@@ -1,0 +1,29 @@
+<section class="container">
+
+    <h2 class="text-main">allorder list :</h2>
+    <div class="row g-4  ">
+    @for (item of allorderlist; track $index) {
+    
+            <div class="col-md-6 ">
+
+                <div class="product p-4">
+                    <h3> <span class="text-main">order Number </span>: {{$index+1}}</h3>
+                    <h3> <span class="text-main">total Price</span> : {{item.totalOrderPrice}} EGP</h3>
+                    <h3> <span class="text-main">payment by</span> : {{item.paymentMethodType}}</h3>
+    
+    
+    
+                </div>
+                
+                
+                
+            </div>
+            
+        
+    
+            
+        }
+        
+    </div>
+
+</section>

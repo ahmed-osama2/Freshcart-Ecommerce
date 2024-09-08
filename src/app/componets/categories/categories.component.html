@@ -1,0 +1,25 @@
+
+<section class="my2 container">
+    <h2 class="p-2 h4">Shop Popular categories:</h2>
+
+    <div class="row g-2">
+        @for (cat of categoriesList; track cat._id) {
+            
+            
+            <div class="col-md-3">
+        
+                <div class="cr" [routerLink]="['/detailscat',cat._id]">
+                    <img [src]="cat.image" height="250px" class="w-100" [alt]="cat.name">
+                    <h3 class="text-main h6">{{cat.name}}</h3>
+                </div>
+        
+            </div>
+    
+    
+    
+            
+        }
+    </div>
+    
+
+</section>

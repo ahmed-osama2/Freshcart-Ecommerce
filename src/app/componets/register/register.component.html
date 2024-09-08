@@ -1,0 +1,139 @@
+<section class="bg-main-light shadow p-2 my-4 rounded-4">
+    <h1 class="h2 text-main">Register Now:</h1>
+    <form [formGroup]="rigesterForm" (ngSubmit)="registerSubmint()" >
+        <div class="my-2">
+            <label for="name">name :</label>
+            <input formControlName="name" id="name" type="text" class="form-control">
+
+            @if (rigesterForm.get('name')?.errors && (rigesterForm.get('name')?.touched || rigesterForm.get('name')?.dirty ) ) {
+
+                <div class="alert alert-danger w-75 m-0 "> 
+                    @if (rigesterForm.get('name')?.getError('required')) {
+
+                        <p class="m-0 ">name required</p>
+                    }
+                    @else if (rigesterForm.get('name')?.getError('minlength')) {
+
+                        <p class="m-0 ">Name Should be more than or equal  3 chars</p>
+                    }
+                    @else if (rigesterForm.get('name')?.getError('maxlength')) {
+
+                        <p class="m-0 ">Name Should be less than or equal  20 chars</p>
+                    }
+
+                    
+    
+                </div>
+            }
+            
+        </div>
+        <div class="my-2">
+            <label for="email">email :</label>
+            <input formControlName="email" id="email" type="email" class="form-control">
+
+            @if (rigesterForm.get('email')?.errors && rigesterForm.get('email')?.touched) {
+
+                <div class="alert alert-danger w-75 m-0 ">
+                    @if (rigesterForm.get('email')?.getError('required')) {
+
+                        <p class="m-0 ">email required</p>
+                    }
+                    @else if (rigesterForm.get('email')?.getError('email')) {
+
+                        <p class="m-0 ">Enter Valid Email</p>
+                    }
+                   
+                    
+    
+                </div>
+            }
+            
+        </div>
+        <div class="my-2">
+            <label for="phone">phone :</label>
+            <input formControlName="phone" id="phone" type="tel" class="form-control">
+
+
+            @if (rigesterForm.get('phone')?.errors && rigesterForm.get('phone')?.touched) {
+
+                <div class="alert alert-danger w-75 m-0 ">
+                    @if (rigesterForm.get('phone')?.getError('required')) {
+
+                        <p class="m-0 ">phone required</p>
+                    }
+                    @else if (rigesterForm.get('phone')?.getError('pattern')) {
+
+                        <p class="m-0 ">Enter Valid Egyption phone</p>
+                    }
+                   
+                    
+    
+                </div>
+            }
+            
+        </div>
+
+        <div class="my-2">
+            <label for="passwerd">passwerd :</label>
+            <input formControlName="password" id="passwerd" type="password" class="form-control">
+
+           
+            @if (rigesterForm.get('password')?.errors && rigesterForm.get('password')?.touched) {
+
+                <div class="alert alert-danger w-75 m-0 ">
+                    @if (rigesterForm.get('password')?.getError('required')) {
+
+                        <p class="m-0 ">password required</p>
+                    }
+                    @else if (rigesterForm.get('password')?.getError('pattern')) {
+
+                        <p class="m-0 ">Enter Valid password</p>
+                    }
+                   
+                    
+    
+                </div>
+            }
+            
+        </div>
+        <div class="my-2">
+            <label for="rePassword">rePassword :</label>
+            <input formControlName="rePassword" id="rePassword" type="password" class="form-control">
+            
+            @if (rigesterForm.getError('mismatch') && rigesterForm.get('rePassword')?.touched) {
+                <p class="alert alert-danger w-75 m-0">Password confirmation is incorrect</p>
+ 
+            }
+
+            
+
+            
+        </div>
+
+        <button   class="btn-main ms-auto d-block">Register 
+            @if (isLoding) {
+
+                <span><i class="fas fa-spin fa-spinner"></i> </span>
+            }
+        </button>
+
+        @if (msgError) {
+            <p class="alert alert-danger w-75 m-0">{{msgError}}</p>
+
+        }
+
+
+        @if (myMassage) 
+        {
+            <h2 class="alert alert-success w-100  text-center">success</h2>
+
+        }
+
+
+
+
+
+        
+
+    </form>
+</section>
